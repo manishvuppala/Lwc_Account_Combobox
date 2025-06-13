@@ -1,0 +1,46 @@
+<template>
+    <lightning-card title="Account Related Data">
+        <div class="slds-m-around_medium">
+            <lightning-combobox
+                name="Accounts"
+                label="Account"
+                placeholder="Select an Account"
+                options={accountList}
+                onchange={handleAccountChange}
+            ></lightning-combobox>
+        </div>
+
+        <div class="slds-var-p-top_small">
+            <div class="slsds-heading_medium slds-var-p-around_small">
+                Related Cases
+            </div>
+            <template lwc:if={caseList.length}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={caseList}
+                    columns={caseColumns}
+                ></lightning-datatable>
+            </template>
+            <template lwc:else>
+                <h3 class="slds-text-heading_medium slds-var-p-around_small">No related Cases for this Account</h3>
+            </template>
+        </div>
+
+        <div class="slds-var-p-top_small">
+            <div class="slsds-heading_medium">
+                <h3 class="slds-text-heading_medium slds-var-p-around_small">Related Contacts</h3>
+            </div>
+            <template lwc:if={contactList.length}>
+                <lightning-datatable
+                    key-field="Id"
+                    data={contactList}
+                    columns={contactColumns}
+                ></lightning-datatable>
+            </template>
+            <template lwc:else>
+                <h3 class="slds-text-heading_medium slds-var-p-around_small">No related Contacts for this Account</h3>
+            </template>
+        </div>
+
+    </lightning-card>
+</template>
